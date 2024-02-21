@@ -11,7 +11,7 @@ const Weather = () => {
   const lat = searchParams.get("lat");
   const long = searchParams.get("long");
 
-  const [cityData, setCityData] = useState({} as any);
+  const [cityData, setCityData] = useState(null as any);
 
   useEffect(() => {
     fetch(
