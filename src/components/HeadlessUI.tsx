@@ -75,7 +75,7 @@ function HeadlessUI() {
     <div className=" top-16 w-72 sm:w-96">
       <Combobox
         value={selected}
-        onChange={(event) => {
+        onChange={(event: any) => {
           setSelected(event);
           navigate(
             `/${event?.name}?lat=${event?.latitude}&long=${event?.longitude}`
