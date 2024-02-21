@@ -1,4 +1,4 @@
-# Weath Web App
+# Weather Web App
 
 ### Overview
 
