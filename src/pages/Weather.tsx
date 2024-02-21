@@ -11,7 +11,7 @@ const Weather = () => {
   const lat = searchParams.get("lat");
   const long = searchParams.get("long");
 
-  const [cityData, setCityData] = useState();
+  const [cityData, setCityData] = useState({} as any);
 
   useEffect(() => {
     fetch(
@@ -21,7 +21,7 @@ const Weather = () => {
       .then((data) => setCityData(data));
   }, [lat, long]);
 
-  function getWeekday(dateString) {
+  function getWeekday(dateString: any) {
     const daysOfWeek = [
       "Sunday",
       "Monday",
