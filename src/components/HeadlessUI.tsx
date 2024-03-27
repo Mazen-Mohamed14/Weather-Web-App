@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { useNavigate } from "react-router-dom";
+import useCityName from "../hooks/useCityName";
 
 export interface City {
   id: number;
@@ -20,7 +21,6 @@ export interface City {
 }
 
 function HeadlessUI() {
-  const [cityArr, setCityArr] = useState<City[]>([]);
   const [selected, setSelected] = useState<string>("");
   const [query, setQuery] = useState<string>("");
   const [userInput, setUserInput] = useState<string>("a");
@@ -39,27 +39,7 @@ function HeadlessUI() {
     };
   }, [userInput]);
 
-  useEffect(() => {
-    const getCities = async () => {
-      const headersList = {
-        Accept: "*/*",
-        "X-RapidAPI-Key": "176e4daa48mshd2048cb345d3ad3p1c3a60jsncdafc48f6a69",
-        "X-RapidAPI-Host": "wft-geo-db.p.rapidapi.com",
-      };
-
-      const response = await fetch(
-        `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?minPopulation=1000000&namePrefix=${debouncedInput}`,
-        {
-          method: "GET",
-          headers: headersList,
-        }
-      );
-
-      const { data } = await response.json();
-      setCityArr(data);
-    };
-    getCities();
-  }, [debouncedInput]);
+  const cityArr = useCityName(debouncedInput);
 
   const filteredCityArr =
     query === ""
